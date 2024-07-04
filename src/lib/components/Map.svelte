@@ -14,7 +14,7 @@
   });
 
   onDestroy(() => {
-    unsubscribe && unsubscribe();
+    if (unsubscribe) unsubscribe();
   });
 
   const loadAndAttachMapToHTMLDiv = async (loader: Loader, ref: HTMLDivElement, mapOptions: google.maps.MapOptions) => {
@@ -62,6 +62,11 @@
       map
     }
     await loadAndAttachMarkerToMap(loader, markerOptions);
+
+    unsubscribe = markerLocation.subscribe((value) => {
+      marker.position = value;
+      map.setCenter(value);
+    });
   }
 </script>
 
