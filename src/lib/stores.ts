@@ -18,7 +18,7 @@ const CreateLocalStorageStore = <T>(key: string, defaultValue: T) => {
   // Initial value is either the value from local storage
   // or the default value if no value stored in local storage.
   const store = writable(getFromLocalStorage<T>(key) || defaultValue);
-  const { subscribe, set } = store;
+  const { set } = store;
   // New set function that handles storing the value in local storage while updating store value.
   const setAndStore = (value: T) => {
     storeInLocalStorage(key, value);
@@ -26,7 +26,7 @@ const CreateLocalStorageStore = <T>(key: string, defaultValue: T) => {
   }
 
   return {
-    subscribe,
+    ...store,
     set: setAndStore,
   };
 }
