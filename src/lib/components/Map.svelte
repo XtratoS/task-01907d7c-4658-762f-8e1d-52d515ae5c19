@@ -65,7 +65,7 @@
 
     unsubscribe = markerLocation.subscribe((value) => {
       marker.position = value;
-      map.setCenter(value);
+      map.panTo(value);
     });
   }
 </script>
