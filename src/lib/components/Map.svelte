@@ -14,7 +14,7 @@
   });
 
   onDestroy(() => {
-    unsubscribe();
+    unsubscribe && unsubscribe();
   });
 
   const loadAndAttachMapToHTMLDiv = async (loader: Loader, ref: HTMLDivElement, mapOptions: google.maps.MapOptions) => {
