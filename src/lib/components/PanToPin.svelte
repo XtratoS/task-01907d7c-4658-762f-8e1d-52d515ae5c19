@@ -9,7 +9,7 @@
   }
 </script>
 
-<button class="icon-container" on:click={handleButtonClick}>
+<button title="pan map to pin" aria-label="pan map to pin" class="icon-container" on:click={handleButtonClick}>
   <PinIcon />
 </button>
 

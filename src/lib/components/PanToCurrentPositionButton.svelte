@@ -12,7 +12,7 @@
   }
 </script>
 
-<button class="icon-container" on:click={handleButtonClick}>
+<button title="pan map to current location" aria-label="pan map to current location" class="icon-container" on:click={handleButtonClick}>
   <CurrentPositionIcon color=white />
 </button>
 
