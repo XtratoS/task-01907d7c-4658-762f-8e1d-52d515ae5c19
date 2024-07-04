@@ -1,7 +1,7 @@
 <script lang="ts">
   import CurrentPositionIcon from "$lib/icons/Position.svelte";
   import { markerLocation } from "$lib/stores";
-  import { useGeoLocation } from "../../hooks";
+  import { useGeoLocation } from "../../hooks.client";
 
   const handleButtonClick = (ev: MouseEvent) => {
     const moveToLocation = (coordinates: google.maps.LatLngLiteral|null) => {
