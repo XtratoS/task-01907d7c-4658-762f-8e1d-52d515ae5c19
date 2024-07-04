@@ -21,7 +21,9 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@googlemaps/js-api-loader": "^1.16.6",
 		"@sveltejs/adapter-static": "^3.0.2",
+		"@types/google.maps": "^3.55.11",
 		"@types/node": "^20.14.9"
 	}
 }
