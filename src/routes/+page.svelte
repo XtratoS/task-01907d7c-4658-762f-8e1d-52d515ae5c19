@@ -2,6 +2,7 @@
   import Coordinates from "$lib/components/Coordinates.svelte";
   import Map from "$lib/components/Map.svelte";
   import PanToCurrentPositionButton from "$lib/components/PanToCurrentPositionButton.svelte";
+  import PanToPin from "$lib/components/PanToPin.svelte";
 
   let smallScreen = window.matchMedia("(max-width: 768px)").matches;
   const onResize = () => {
@@ -13,4 +14,5 @@
 
 <Map />
 <Coordinates bind:smallScreen />
+<PanToPin />
 <PanToCurrentPositionButton />
