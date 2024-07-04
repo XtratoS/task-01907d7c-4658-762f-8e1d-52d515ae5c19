@@ -36,3 +36,4 @@ const initialCoordinates = {lat: 30.05, lng: 31.35};
 export const markerLocation = CreateLocalStorageStore<google.maps.LatLngLiteral>(MARKER_LOCATION_LOCALSTORAGE_KEY, initialCoordinates);
 // Create a store for map zoom.
 export const mapZoom = CreateLocalStorageStore<number>(MAP_ZOOM_LOCALSTORAGE_KEY, 15);
+export const geoLocationAvailable = writable(false);
