@@ -2,6 +2,7 @@
   import Coordinates from "$lib/components/Coordinates.svelte";
   import Map from "$lib/components/Map.svelte";
 
+  // Screen size using media query
   let smallScreen = window.matchMedia("(max-width: 768px)").matches;
   const onResize = () => {
     smallScreen = window.matchMedia("(max-width: 768px)").matches;

@@ -4,9 +4,9 @@ import { writable } from "svelte/store";
  * Use the browser's Geolocation API to get the current location of the user
  */
 export const useGeoLocation = () => {
+  // location store
   const store = writable<{location: google.maps.LatLngLiteral|null}>({location: null});
-  // let location: google.maps.LatLngLiteral|null = null;
-  // if (!navigator.geolocation) return {location};
+
   const successCallback = (position: GeolocationPosition) => {
     store.set({location: {
       lat: position.coords.latitude,
@@ -19,6 +19,7 @@ export const useGeoLocation = () => {
     store.set({location: null});
   }
 
+  // position options as per MDN docs
   const positionOptions = {
     enableHighAccuracy: true,
     maximumAge: 10000
