@@ -6,12 +6,12 @@ Followed Sveltekit's conventions as per their documentation.
 
 ## Rendering
 
-Since this is a static application, I disabled Server Side Rendering and enabled Prerender.
+Since this is a static application, I disabled Server Side Rendering (which requires a server) and enabled Prerendering (which builds the page in advance).
 
 ## Data Storage
 
-Used localStorage to store the pin location.
-Add functionality to data stores to automatically update localStorage whenever the pin location changes.
+Used **Local Storage** to store the pin location.
+Add functionality to data stores to automatically update **Local Storage** whenever the pin location changes.
 
 ## Responsiveness
 
@@ -22,3 +22,7 @@ Used mediaquery to modify the appearance of the Latitude and Longitude on the to
 | Desktop                                            | Mobile                                             |
 | -------------------------------------------------- | -------------------------------------------------- |
 | ![1720136053478](image/STRATEGIES/1720136053478.png) | ![1720136109816](image/STRATEGIES/1720136109816.png) |
+
+## Real-time User Location
+
+I utilized the **Geolocation API** to get the user's location in real time, and enable the user to place the pin in their realtime location by the press of a button ![1720165183796](image/STRATEGIES/1720165183796.png)
