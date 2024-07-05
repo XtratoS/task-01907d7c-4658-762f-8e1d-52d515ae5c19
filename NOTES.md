@@ -100,4 +100,7 @@ The position of the pin is stored in your browser's memory, which will be restor
       navigator.geolocation.getCurrentPosition(successCallback, errorCallback, positionOptions);
     }
     ```
-11.
+
+# Future Work
+1. Add an input field to search for places using google maps platform's places library
+2. Add the ability to save places to the browser's memory and retrieve them later
