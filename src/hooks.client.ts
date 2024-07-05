@@ -1,19 +1,22 @@
+import { writable } from "svelte/store";
+
 /**
  * Use the browser's Geolocation API to get the current location of the user
  */
-export const useGeoLocation = (callback: (position: google.maps.LatLngLiteral|null) => void) => {
-  if (!navigator.geolocation) return null;
+export const useGeoLocation = () => {
+  const store = writable<{location: google.maps.LatLngLiteral|null}>({location: null});
+  // let location: google.maps.LatLngLiteral|null = null;
+  // if (!navigator.geolocation) return {location};
   const successCallback = (position: GeolocationPosition) => {
-    let location: google.maps.LatLngLiteral = {
+    store.set({location: {
       lat: position.coords.latitude,
       lng: position.coords.longitude
-    };
-    callback(location);
+    }});
   }
 
   const errorCallback = (error: GeolocationPositionError) => {
     console.error(error);
-    callback(null);
+    store.set({location: null});
   }
 
   const positionOptions = {
@@ -22,4 +25,6 @@ export const useGeoLocation = (callback: (position: google.maps.LatLngLiteral|nu
   }
 
   navigator.geolocation.getCurrentPosition(successCallback, errorCallback, positionOptions);
+
+  return store;
 }

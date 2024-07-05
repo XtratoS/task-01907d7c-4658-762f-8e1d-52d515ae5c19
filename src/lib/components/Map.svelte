@@ -3,7 +3,9 @@
   import { get } from 'svelte/store';
   import { mapZoom, markerLocation } from '$lib/stores';
   import type { Loader } from '@googlemaps/js-api-loader';
+  import BottomButtonsContainer from './BottomButtonsContainer.svelte';
 
+  export let height = 100;
   let map: google.maps.Map;
   let marker: google.maps.marker.AdvancedMarkerElement;
   let ref: HTMLDivElement;
@@ -63,6 +65,7 @@
       zoom: get(mapZoom),
       mapId: '51562447c0a38a88',
       fullscreenControl: false,
+      mapTypeControl: false,
     }
     await loadAndAttachMapToHTMLDiv(loader, ref, mapOptions);
 
@@ -83,4 +86,21 @@
   }
 </script>
 
-<div bind:this={ref} id="map" style="width: 100%; height: 100%;"></div>
+<div class="map-container" style="height: {height}%">
+  <div bind:this={ref} id="map"></div>
+  <BottomButtonsContainer />
+</div>
+
+<style>
+  .map-container {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease-in-out;
+  }
+  #map {
+    height: 100%;
+    width: 100%;
+  }
+</style>
