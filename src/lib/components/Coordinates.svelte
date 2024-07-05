@@ -3,11 +3,15 @@
   
   export let smallScreen: boolean;
 
+  /**
+   * Function to approximate the number to 3 decimal places
+   */
   const approximateNumber = (value: number) => {
     return (Math.round(value * 1000) / 1000).toFixed(3);
   }
 </script>
 
+<!-- Handle responsive coordinate labels -->
 <div class="coordinates-holder">
   {#if smallScreen}
     <div class="coordinate"><span>Lat:</span><span>{approximateNumber($markerLocation.lat)}</span></div>

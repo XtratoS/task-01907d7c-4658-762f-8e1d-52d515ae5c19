@@ -4,15 +4,22 @@ import { writable } from "svelte/store";
 const MARKER_LOCATION_LOCALSTORAGE_KEY = "marker-location";
 const MAP_ZOOM_LOCALSTORAGE_KEY = "map-zoom";
 
-// Helper functions to get and set values in local storage.
+/**
+ * Helper function to get value from local storage.
+ */
 const getFromLocalStorage = <T>(key: string) => {
   return JSON.parse(localStorage.getItem(key) || "null") as T|null;
 }
+/**
+ * Helper function to set value in local storage.
+ */
 const storeInLocalStorage = <T>(key: string, value: T) => {
   localStorage.setItem(key, JSON.stringify(value));
 }
 
-// Generic function to create a store that stores the value in local storage.
+/**
+ * Generic function to create a store that stores the value in local storage.
+*/
 const CreateLocalStorageStore = <T>(key: string, defaultValue: T) => {
   // Create a store that stores the value.
   // Initial value is either the value from local storage
@@ -31,6 +38,7 @@ const CreateLocalStorageStore = <T>(key: string, defaultValue: T) => {
   };
 }
 
+// Initial coordinates for the map, somewhere in Nasr City, Cairo.
 const initialCoordinates = {lat: 30.05, lng: 31.35};
 // Create a store for marker location.
 export const markerLocation = CreateLocalStorageStore<google.maps.LatLngLiteral>(MARKER_LOCATION_LOCALSTORAGE_KEY, initialCoordinates);

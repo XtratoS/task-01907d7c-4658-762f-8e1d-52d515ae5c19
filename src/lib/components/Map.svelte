@@ -9,14 +9,19 @@
   let ref: HTMLDivElement;
   let unsubscribe: () => void;
 
+  // Initialize the map when the component is mounted
   onMount(async () => {
     await initMap();
   });
 
+  // Unsuscribe function is called on component destruction
   onDestroy(() => {
     if (unsubscribe) unsubscribe();
   });
 
+  /**
+   * Function to load the map and attach it to the HTML div
+   */
   const loadAndAttachMapToHTMLDiv = async (loader: Loader, ref: HTMLDivElement, mapOptions: google.maps.MapOptions) => {
     // Import the map library
     const { Map } = await loader.importLibrary("maps");
@@ -28,18 +33,23 @@
     });
   }
 
+  /**
+   * Function to load the marker and attach it to the map
+   */
   const loadAndAttachMarkerToMap = async (loader: Loader, markerOptions: google.maps.marker.AdvancedMarkerElementOptions) => {
     // Import the marker library
     const { AdvancedMarkerElement } = await loader.importLibrary("marker");
     // Create a marker and attach it to the map
     marker = new AdvancedMarkerElement(markerOptions);
-    // marker.addListener()
     // Update the marker location in the store whenever it's dragged
     marker.addListener("dragend", () => {
       markerLocation.set(marker.position as google.maps.LatLngLiteral);
     });
   }
 
+  /**
+   * Function to initialize the map
+   */
   const initMap = async () => {
     const { Loader } = await import('@googlemaps/js-api-loader');
     const loader = new Loader({
@@ -47,6 +57,7 @@
       version: "weekly"
     });
 
+    // Map Options as per Google Maps API
     const mapOptions: google.maps.MapOptions = {
       center: get(markerLocation),
       zoom: get(mapZoom),
@@ -55,6 +66,7 @@
     }
     await loadAndAttachMapToHTMLDiv(loader, ref, mapOptions);
 
+    // Marker Options as per Google Maps API
     const markerOptions: google.maps.marker.AdvancedMarkerElementOptions = {
       position: get(markerLocation),
       title: "Hello World!",
@@ -63,6 +75,7 @@
     }
     await loadAndAttachMarkerToMap(loader, markerOptions);
 
+    // Unsubscriber function to clear the subscription and avoid memory leaks
     unsubscribe = markerLocation.subscribe((value) => {
       marker.position = value;
       map.panTo(value);

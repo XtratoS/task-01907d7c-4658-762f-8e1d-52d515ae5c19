@@ -1,3 +1,6 @@
+/**
+ * Use the browser's Geolocation API to get the current location of the user
+ */
 export const useGeoLocation = (callback: (position: google.maps.LatLngLiteral|null) => void) => {
   if (!navigator.geolocation) return null;
   const successCallback = (position: GeolocationPosition) => {

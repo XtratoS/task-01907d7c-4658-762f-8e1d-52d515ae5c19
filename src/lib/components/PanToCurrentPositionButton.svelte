@@ -4,10 +4,17 @@
   import { useGeoLocation } from "../../hooks.client";
 
   const handleButtonClick = (ev: MouseEvent) => {
+    /**
+     * Function to move the map to the current location using the browser's geolocation API
+     */
     const moveToLocation = (coordinates: google.maps.LatLngLiteral|null) => {
+      // Guard clause to prevent the function from running if user doesn't allow location permission
       if (!coordinates) return;
+      // Move the marker to the location by changing the store value
+      // Since the map is subscribed to the store value, it will be panned to the new location
       markerLocation.set(coordinates);
     }
+    // Using the custom hook to get the current location via the browser's geolocation API
     useGeoLocation(moveToLocation);
   }
 </script>
